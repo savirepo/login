@@ -1,0 +1,32 @@
+public class LoginTest {
+
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @Test
+    public void testLogin() {
+        driver.get("https://example.com/login"); // Replace with real URL
+
+        WebElement emailField = driver.findElement(By.id("email")); // Adjust locator
+        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement loginButton = driver.findElement(By.id("loginButton"));
+
+        emailField.sendKeys("testuser@example.com");
+        passwordField.sendKeys("password123");
+        loginButton.click();
+
+        // Assertion or check after login
+        WebElement dashboard = driver.findElement(By.id("dashboard")); // Example
+        assert dashboard.isDisplayed();
+    }
+
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+}

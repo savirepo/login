@@ -1,0 +1,21 @@
+import static io.restassured.RestAssured.given;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.annotations.Test;
+public class LoginApiTest {
+
+    @Test
+    public void testLoginApi() {
+        RestAssured.baseURI = "https://example.com/api";
+
+        String requestBody = "{ \"email\": \"testuser@example.com\", \"password\": \"password123\" }";
+
+        given()
+            .header("Content-Type", "application/json")
+            .body(requestBody)
+        .when()
+            .post("/login")
+        .then()
+            .statusCode(200); 
+    }
+}
